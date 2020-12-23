@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block title %}
+关于
+{% endblock %}
+
+{% block lib %}
+<link rel="stylesheet" href="{% static 'css/no_do_it.css' %}">
+{% endblock %}
+
+{% block body %}
+	<h1>这是关于页面哦。。。。。</h1>
+	<p class="text-info">本博客是学习 https://tendcode.com/about/ 完成的。</p>
+	<img src="{% static 'img/soq.jpg' %}" >
+	<img src="{% static 'img/soq.jpg' %}" >
+	<br>
+{% endblock %}

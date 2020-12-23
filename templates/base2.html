@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block lib %}
+
+<link rel="stylesheet" href="{% static 'css/base2.css' %}">
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+<link rel="stylesheet" href="{% static 'css/cate.css' %}">
+
+{% endblock %}
+
+{% block title %}
+侧边栏
+{% endblock %}
+
+
+{% block body %}
+
+<div class="b_content">
+	
+	<div class="b_left">
+		{% block b_left %}
+		
+		{% endblock %}
+	</div>
+	
+	
+	<div class="b_right">
+		<div class="b_right_top">
+			<div class="b_right_top_header">
+				<strong>
+					<span class="glyphicon glyphicon-leaf" aria-hidden="true" ></span>
+					个人空间
+				</strong>
+			</div>
+			
+			<div class="b_right_top_body">
+				<div class="imgs">
+					<div class="b_img ">
+						<a href="https://github.com/Hopetree" target="_blank">
+							<img src="{% static 'img/github.png' %}" alt="">
+							<p>Github</p>
+						</a>
+						
+					</div>
+					<div class="b_img ">
+						<a href="{% url 'mainapp:no_do_it' %}">
+							<img src="{% static 'img/blog.png' %}" alt="">
+							<p>Timeline</p>
+						</a>
+						
+					</div>
+					<div class="b_img ">
+						<a href="{% url 'mainapp:no_do_it' %}">
+							<img src="{% static 'img/rss.png' %}" alt="">
+							<p>RSS</p>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="b_right_middle">
+			<div class="b_right_middle_header">
+				<strong>
+					<span class="glyphicon glyphicon-leaf" aria-hidden="true" ></span>
+					文章分类
+				</strong>
+			</div>
+			
+			<ul class="cates" style="list-style: none;">
+				{% for c in cates %}
+				<li class="cate" >
+					<span class="glyphicon glyphicon-play" aria-hidden="true" style="color: #17a2b8; padding-left: 5px;font-size: 6px;"></span>
+					<a href="{% url 'mainapp:cate' c.id %}">
+						{{c.name}}
+					</a>
+					<span class="bagde text-center rt c_num"> {{ c.articles.count }} </span>
+				</li>
+				{% endfor %}
+			</ul>
+		</div>
+		
+		<div class="b_right_bottom">
+			<div class="b_right_bottom_header">
+				<strong>
+					<span class="glyphicon glyphicon-paperclip" aria-hidden="true" ></span>
+					友情链接
+				</strong>
+			</div>
+			
+			<div class="b_right_bottom_body">
+				
+				<div class="w100 text-center yl">
+					<div class="mx-2">
+						<a href="https://github.com/Hopetree" target="_blank">博客源码</a>
+					</div>
+				</div>
+				
+				<div class="w100 text-center yl">
+					<div class="mx-2">
+						<a href="https://docs.djangoproject.com/zh-hans/3.1/" target="_blank">不懂就问</a>
+					</div>
+				</div>
+				
+				<div class="w100 text-center yl">
+					<div class="mx-2">
+						<a href="https://www.google.com/" target="_blank">google</a>
+					</div>
+				</div>
+				
+				<div class="w100 text-center yl">
+					<div class="mx-2">
+						<a href="https://www.baidu.com/" target="_blank">baidu</a>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</div>
+	
+{% endblock %}

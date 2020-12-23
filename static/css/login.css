@@ -1,0 +1,53 @@
+.login{
+	padding-left: 48px;
+	padding-right: 48px;
+	margin-left: 25%;
+	max-width: 50%;
+	margin-bottom: 10px;
+}
+
+.login .log_dis{
+	padding-left: 36px;
+	padding-right: 36px;
+	background-color: #fff;
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+	border: 1px solid rgba(0,0,0,.125);
+	border-radius: 0;
+}
+
+.login .log_dis .log_head{
+	text-align: center;
+	padding: 8px 20px;
+	border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+}
+
+.login .log_dis .log_head h3{
+	padding-top: 10px;
+	color: #17a2b8;
+	margin-top: 4px;
+	margin-bottom: 4px;
+	font-size: 18px;
+}
+
+.login .log_dis .log_body{
+	padding: 8px 0;
+}
+
+.login .log_dis .log_body .log_body_bot{
+	padding: 16px 0;
+}
+
+.login .log_dis .log_body a:hover{
+	color: lightblue;
+}
+
+.login .log_dis .log_footer{
+	text-align: center;
+}
+	
+.login .log_dis .log_footer img{
+	width: 13%;
+	padding: 8px;
+}

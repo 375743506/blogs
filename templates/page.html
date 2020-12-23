@@ -1,0 +1,131 @@
+{% extends 'base2.html' %}
+{% load static %}
+
+
+
+{% block title %}
+首页
+{% endblock %}
+
+{% block body %}
+
+{% for a in page.object_list %}
+<div class="article">
+	<div class="a_right">
+		<a href="{% url 'mainapp:article' a.id %}">
+			<img src="/media/{{ a.mainImg }}" alt="">
+		</a>
+	</div>
+	
+	<div class="a_left">
+		<div class="a_time">
+			<img src="{% static 'img/xhr.png' %}" alt="">
+			<span>Hopetree</span>
+			<span>
+				<span class="glyphicon glyphicon-bookmark" aria-hidden="true" >
+
+				</span>{{a.create_time}}
+			</span>
+		</div>
+		
+		<h2 class="title">
+			<a href="{% url 'mainapp:article' a.id %}">{{ a.aname }}</a>
+		</h2>
+		
+		<p class="desc">
+			{{ a.adesc }}
+		</p>
+		
+		<div class="left_bot">
+			<a href="{% url 'mainapp:cate' a.cate.id %}">{{ a.cate.name }}</a>
+			<span style="padding-left: 5px;">
+				<span class="glyphicon glyphicon-eye-open" aria-hidden="true" >
+								
+				</span>{{ a.read_num }}
+				
+			</span>
+			<a href="" style="color:#6c757d;padding: 0 5px;">
+				<span class="glyphicon glyphicon-bell" aria-hidden="true" >
+								
+				</span>5
+			</a>
+		</div>
+	</div>
+</div>
+{% endfor %}
+
+
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        {% if not page.has_previous %}
+        <li class="disabled">
+            <a href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        {% else %}
+        <li>
+            <a href="{% url 'mainapp:page_order' %}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        {% endif %}
+
+
+        {% if not page.has_previous %}
+        <li class="disabled">
+            <a href="#" aria-label="Previous">
+                <span aria-hidden="true">&lt;</span>
+            </a>
+        </li>
+        {% else %}
+        <li>
+            <a href="{% url 'mainapp:page_order' %}?pagenum={{ page.previous_page_number }}" aria-label="Previous">
+                <span aria-hidden="true">&lt;</span>
+            </a>
+        </li>
+        {% endif %}
+
+        {% for pn in page.paginator.page_range %}
+            {% if page.number == pn %}
+            <li class="active"><a href="{% url 'mainapp:page_order' %}?pagenum={{pn}}" >{{pn}}</a></li>
+            {% else %}
+            <li><a href="{% url 'mainapp:page_order' %}?pagenum={{pn}}">{{pn}}</a></li>
+            {% endif %}
+        {% endfor %}
+
+
+
+        {% if not page.has_next %}
+        <li class="disabled">
+            <a href="#" aria-label="Next">
+                <span aria-hidden="true">&gt;</span>
+            </a>
+        </li>
+        {% else %}
+        <li>
+            <a href="{% url 'mainapp:page_order' %}?pagenum={{ page.next_page_number }}" aria-label="Next">
+                <span aria-hidden="true">&gt;</span>
+            </a>
+        </li>
+        {% endif %}
+
+
+        {% if not page.has_next %}
+        <li class="disabled">
+            <a href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+        {% else %}
+        <li>
+            <a href="{% url 'mainapp:page_order' %}?pagenum={{ page.paginator.num_pages }}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+        {% endif %}
+
+    </ul>
+</nav>
+
+{% endblock %}

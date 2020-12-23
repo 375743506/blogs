@@ -1,0 +1,61 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+
+{% block title %}
+登录
+{% endblock %}
+
+{% block lib %}
+<link rel="stylesheet" href="{% static 'css/regist.css' %}">
+{% endblock %}
+
+
+{% block body %}
+
+<div class="regist">
+	<div class="reg_dis">
+		<div class="reg_head">
+			<h3>修改头像</h3>
+		</div>
+		<hr>
+		<form action="{% url 'userapp:changePic' %}" method="post" enctype="multipart/form-data">
+			<p class="text-danger">{{error}}</p>
+			{% csrf_token %}
+			<div class="reg_body">	
+			
+				<br>
+				{{cpf.headpic.label_tag }}{{cpf.headpic}}
+				<br>
+				<div class="reg_body_bot">
+					<input type="submit" name="btn" value="修改头像" class="btn btn-success rt">
+				</div>
+				<br>
+				<br>
+			</div>
+		</form>
+		<hr>
+		<div class="reg_footer">
+			<a href="">
+				<img src="{% static 'img/weibo.png' %}" alt="">
+			</a>
+			<a href="">
+				<img src="{% static 'img/github1.png' %}" alt="">
+			</a>
+			<br>
+			<br>
+			<br>
+		</div>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+</div>
+
+
+{% endblock %}

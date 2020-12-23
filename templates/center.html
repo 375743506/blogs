@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block title %}
+个人中心
+{% endblock %}
+
+
+{% block lib %}
+<link rel="stylesheet" href="{% static 'css/center.css' %}">
+{% endblock %}
+
+{% block body %}
+	<div class="center">
+		<div class="ctr_dis">
+			<div class="ctr_head">
+				<h3>个人资料</h3>
+			</div>
+			<hr>
+			
+			<div class="ctr_body">
+				<ul>
+					<li>
+						<img src="/media/{{request.user.headpic}}" alt="">
+					</li>
+					<li>
+						<strong>用户名：</strong>
+						<span>{{request.user.username}}</span>
+					</li>
+					<li>
+						<strong>电子邮箱:</strong>
+						<span>{{request.user.email}}</span>
+					</li>
+					<li>
+						<strong>网址：</strong>
+						<span></span>
+					</li>
+				</ul>
+			</div>
+			
+			<hr>
+			<div class="ctr_footer">
+				<div class="cz">
+					<a href="{% url 'userapp:change' %}">修改资料</a>
+					<a href="{% url 'userapp:changePassword' %}">修改密码</a>
+					<a href="{% url 'userapp:changePic' %}">修改头像</a>
+				</div>
+			</div>
+			
+		</div>
+		<br>
+		<br>
+		<br>
+	</div>
+{% endblock %}

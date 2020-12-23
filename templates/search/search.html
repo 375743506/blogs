@@ -1,0 +1,91 @@
+{% extends 'base2.html' %}
+{% load static %}
+
+
+{% block title %}
+搜索结果
+{% endblock %}
+
+
+{% block b_left %}
+
+<div class="b_left_top">
+	
+	<p class="t_desc">
+		网站全文搜索功能，将整个网站的文章的标题和内容进行分词存储，
+		然后给每个分词建立索引，搜索功能返回的是全站文章中标题或者内容中包含关键词的文章。
+	</p>
+	
+</div>
+
+<div class="b_left_middle">
+	<a href="" class="active">
+		<strong>
+			<span class="glyphicon glyphicon-time" aria-hidden="true" ></span>
+			时间排序
+		</strong>
+	</a>
+	<a href="">
+		<strong>
+			<span class="glyphicon glyphicon-fire" aria-hidden="true" ></span>
+			热度排序
+		</strong>
+	</a>
+</div>
+
+<div class="b_left_bottom">
+	<div class="a_list">
+		{% if query %}
+			<h3>搜索结果如下：</h3>
+		{% for a in page.object_list %}
+		<div class="article">
+			<div class="a_right">
+				<a href="{% url 'mainapp:article' a.object.id %}">
+					<img src="/media/{{ a.object.mainImg }}" alt="">
+				</a>
+			</div>
+			
+			<div class="a_left">
+				<div class="a_time">
+					<img src="{% static 'img/xhr.png' %}" alt="">
+					<span>Hopetree</span>
+					<span>
+						<span class="glyphicon glyphicon-bookmark" aria-hidden="true" >
+		
+						</span>{{a.object.create_time}}
+					</span>
+				</div>
+				
+				<h2 class="title">
+					<a href="{% url 'mainapp:article' a.object.id %}">{{ a.object.aname }}</a>
+				</h2>
+				
+				<p class="desc">
+					{{ a.object.adesc }}
+				</p>
+				
+				<div class="left_bot">
+					<a href="{% url 'mainapp:cate' a.object.cate.id %}">{{ a.object.cate.name }}</a>
+					<span style="padding-left: 5px;">
+						<span class="glyphicon glyphicon-eye-open" aria-hidden="true" >
+										
+						</span>{{ a.object.read_num }}
+						
+					</span>
+					<a href="" style="color:#6c757d;padding: 0 5px;">
+						<span class="glyphicon glyphicon-bell" aria-hidden="true" >
+										
+						</span>5
+					</a>
+				</div>
+			</div>
+		</div>
+	
+		{% empty %}
+			<p>啥也没找到</p>
+		{% endfor %}
+		{% endif %}
+	</div>
+</div>	
+		
+{% endblock %}

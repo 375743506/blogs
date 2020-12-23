@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block title %}
+消息
+{% endblock %}
+
+{% block lib %}
+<link rel="stylesheet" href="{% static 'css/info.css' %}">
+{% endblock %}
+
+{% block body %}
+	<div class="info">
+		<div class="i_right">
+			<ul class="timeline">
+				<li>
+					<div class="info_a">
+						<h2>你暂时没有推送的消息</h2>
+					</div>
+				</li>
+			</ul>
+			
+			
+		</div>
+		
+		
+		<div class="i_left">
+			<div class="left_a">
+				<div class="left_h">
+					<h4>
+						<strong>
+							<span class="glyphicon glyphicon-bell" aria-hidden="true"></span>消息提示
+						</strong>
+					</h4>
+				</div>
+				
+				<div class="left_f">
+					<ul>
+						<a href="">
+							全部信息
+							<span class="rt">0</span>
+						</a>
+						
+						<a href="">
+							未读信息
+							<span class="rt">0</span>
+						</a>
+					</ul>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+	
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+{% endblock %}

@@ -1,0 +1,215 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block title %}
+文章详情
+{% endblock %}
+
+{% block lib %}
+<link rel="stylesheet" href="{% static 'css/article.css' %}">
+<script src="{% static 'ueditor/ueditor.config.js'%}"></script>
+<script src="{% static 'ueditor/ueditor.all.min.js'%}"></script>
+{% endblock %}
+
+{% block body %}
+<div class="a_all">
+	
+	<div class="t_nav">
+		<ol class="breadcrumb" style="background-color: #fff;">
+		  <li class="t_change"><a href="{% url 'mainapp:index' %}">
+		  <span class="glyphicon glyphicon-home" aria-hidden="true">首页</span>
+		  </a></li>
+		  <li class="t_change"><a href="{% url 'mainapp:cate' article.cate.id %}">类别</a></li>
+		  <li class="active t_change">文章</li>
+		</ol>
+	</div>
+	
+	<div class="content">
+		<h1 class="t_title">
+			{{ article.aname }}
+		</h1>
+		<hr>
+		
+		<div class="t_time">
+			{{ article.create_time }}
+			<span>阅读：{{ article.read_num }}</span>
+			<span>评论:5</span>
+		</div>
+		
+		<div class="t_content">
+			{{ article.content|safe }}
+			
+			
+			<div class="explain">
+				<p><strong>版权声明：</strong>如无特殊说明，文章均为本站原创，转载请注明出处</p>
+				<p><strong>本文链接：</strong>https://tendcode.com/article/github-actions/</p>
+				<p><strong>许可协议：</strong><span style="color: #ea6f5a;">署名-非商业性使用 4.0 国际许可协议</span></p>
+			</div>
+			
+			{% if article.id != article.cate.articles.frist.id %}
+			<div class="a_change lt">
+				<a href="{% url 'mainapp:article' article.prev.id %}">上一篇</a>
+			</div>
+			
+			{% endif %}
+			
+			{% if article.id != article.cate.articles.last.id %}
+			<div class="a_change rt">
+				<a href="{% url 'mainapp:article' article.next.id %}">下一篇</a>
+			</div>
+			{% endif %}
+			
+			<div class="clear"></div>
+		</div>
+		
+		<hr style="height: 4px;">
+		
+		<div class="q_a" name="go" id="go">
+			
+			{% if not request.user.username %}
+			<div class="no_log" >
+				<div class="lgt_dis">
+					<div class="lgt_header">
+						您尚未登录，请
+						<a href="{% url 'userapp:login' %}?next={% url 'mainapp:article' article.id %}">登录</a>或
+						<a href="{% url 'userapp:regist' %}">注册</a> 后评论
+					</div>
+					<div class="lgt_body">
+						<a href="">
+							<img src="{% static 'img/weibo.png' %}" alt="">
+						</a>
+						<a href="">
+							<img src="{% static 'img/github1.png' %}" alt="">
+						</a>
+					</div>
+				</div>
+			</div>
+			{% else %}
+			<div class="y_log">
+				<form action="{% url 'operateapp:addquestion' article.id %}" method="post" style="width: 100%;">
+					<p class="text-danger">{{error}}</p>
+					{% csrf_token %}
+					{{qf}}
+					<br>
+					<input type="submit" value="提交评论" class="btn btn-info rt">
+				</form>
+
+			</div>
+			{% endif %}
+				
+			
+			<div class="question">
+				<div class="comment_header">
+					<strong>{{article.questions.all.count}} 个问题 等待你的回复</strong>
+				</div>
+				
+			
+				{% for q in article.questions.all %}
+				<hr>
+				
+				<div class="q_top">
+					<img src="/media/{{q.user.headpic}}" alt="">
+					<div class="q_rt">
+						{% if not request.user.username %}
+						<a href="#go" class="reply">回复</a>
+						{% else %}
+						<!-- Button trigger modal -->
+						<button type="button" class=" reply" data-toggle="modal" data-target="#myModal11{{q.id}}">
+							回复
+						</button>
+						
+						<!-- Modal -->
+						<form action="{% url 'operateapp:addanswer' q.id %}" method="post">
+							{% csrf_token %}
+							<div class="modal fade" id="myModal11{{q.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+							  <div class="modal-dialog" role="document">
+								<div class="modal-content">
+								  <div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									<h4 class="modal-title" id="myModalLabel">回复页面</h4>
+								  </div>
+								  {{q.id}}
+									 <div class="modal-body">
+										{{af}}
+									 </div>
+									 <div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+										<input type="submit" class="btn btn-primary" value="提交回复">
+									 </div>
+							
+								</div>
+							  </div>
+							</div>
+						</form>
+						{% endif %}
+						<p class="q_name">
+							<strong>{{q.user.username}}</strong>
+						</p>
+						<p>{{forloop.counter}} 楼 </p>
+					</div>
+				</div>
+				
+				<div class="q_content">
+					<p>{{q.question_text|safe}}</p>
+				</div>
+				
+				{% for a in q.answers.all %}
+				<div class="answer">
+					<hr>
+					<div class="a_top">
+						
+						<img src="/media/{{a.user.headpic}}" alt="">
+						<div class="a_rt">
+							{% if not request.user.username %}
+							<a href="#go" class="reply">回复</a>
+							{% else %}
+							<button type="button" class=" reply" data-toggle="modal" data-target="#myModal">
+								回复
+							</button>
+							
+							<!-- Modal -->
+							<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+							  <div class="modal-dialog" role="document">
+								<div class="modal-content">
+								  <div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									<h4 class="modal-title" id="myModalLabel">回复页面</h4>
+								  </div>
+								 <form action="{% url 'operateapp:addanswer' q.id %}" method="post">
+									 {% csrf_token %}
+									 <div class="modal-body">
+											{{af}}
+									 </div>
+									 <div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+										<input type="submit" class="btn btn-primary" value="提交回复">
+									 </div>
+								 </form>
+								</div>
+							  </div>
+							</div>
+							{% endif %}
+							<p class="a_name">
+								<strong>{{q.user.username}}</strong>
+							</p>
+							<p></p>
+						</div>
+					</div>
+					
+					<div class="a_content">
+						<p>{{a.answer_text|safe}}</p>
+					</div>
+				</div>
+				{% endfor %}
+				
+				{% endfor %}
+				<br>
+			</div>
+		</div>
+	</div>
+		
+</div>
+
+{% endblock %}

@@ -1,0 +1,58 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+
+{% block title %}
+登录
+{% endblock %}
+
+{% block lib %}
+<link rel="stylesheet" href="{% static 'css/regist.css' %}">
+{% endblock %}
+
+
+{% block body %}
+
+<div class="regist">
+	<div class="reg_dis">
+		<div class="reg_head">
+			<h3>修改资料</h3>
+		</div>
+		<hr>
+		<form action="{% url 'userapp:change' %}" method="post">
+			<p class="text-danger">{{error}}</p>
+			{% csrf_token %}
+			<div class="reg_body">	
+				{{cf.password.label_tag }}{{cf.password}}
+				<br>
+				{{cf.username2.label_tag }}{{cf.username2}}
+				<br>
+				{{cf.email.label_tag }}{{cf.email}}
+				<br>
+				{{cf.headpic.label_tag }}{{cf.headpic}}
+				<br>
+				<div class="reg_body_bot">
+					<input type="submit" name="btn" value="修改资料" class="btn btn-success rt">
+				</div>
+				<br>
+				<br>
+			</div>
+		</form>
+		<hr>
+		<div class="reg_footer">
+			<a href="">
+				<img src="{% static 'img/weibo.png' %}" alt="">
+			</a>
+			<a href="">
+				<img src="{% static 'img/github1.png' %}" alt="">
+			</a>
+		</div>
+	</div>
+
+</div>
+
+
+{% endblock %}

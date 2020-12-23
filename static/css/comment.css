@@ -1,0 +1,68 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+img{
+	vertical-align: middle;
+	border-style: none;
+}
+
+li{
+	list-style: none;
+}
+
+.rt{
+	float: right;
+}
+
+.lt{
+	float: left;
+}
+
+a{
+	text-decoration: none;
+	color: #99979c;
+}
+
+a:hover{
+	color: #fff;
+	text-decoration: none;
+}
+
+.clear{
+	clear: both;
+}
+
+.w10{
+	width: %10;
+}
+
+.w20{
+	width: %20;
+}
+.w30{
+	width: %30;
+}
+.w40{
+	width: %40;
+}
+
+.w60{
+	width: %60;
+}
+.w70{
+	width: %70;
+}
+.w80{
+	width: %80;
+}
+.w90{
+	width: %90;
+}
+.w100{
+	width: %100;
+}
+
+
+

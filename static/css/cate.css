@@ -1,0 +1,18 @@
+.b_left_top{
+	padding: 16px 16px 4px 16px;
+	background-color: #fff;
+}
+
+.b_left_top .t_s{
+	font-size: 16px
+}
+
+.b_left_top .t_desc{
+	font-size: 16px
+}
+
+.b_left_top h1{
+	font-size: 17px;
+	padding-bottom: 8px;
+	border-bottom: 2px solid #f0f0f0;
+}

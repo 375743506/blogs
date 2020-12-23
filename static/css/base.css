@@ -1,0 +1,116 @@
+.blog_all{
+	background-color: lightcyan;
+}
+
+.ncolor{
+	background-color: #fff;
+}
+
+.navbar-nav li{
+	font-size: 16px;
+}
+
+.navbar-nav li :hover{
+	color: #ea6f5a;
+}
+
+.navbar-nav li.ccolor{
+	color: #ea6f5a;
+}
+
+
+.body{
+	max-width: 1140px;
+	padding-right: 15px;
+	padding-left: 15px;
+	/* background-color: red; */
+	margin: 0 auto;
+}
+
+
+.footer{
+	text-align: center;
+	margin-right: auto;
+	margin-left: auto;
+	
+}
+
+.footer .f_nav{
+	
+	text-align: center;
+	flex: 1 auto;
+	padding: 20px;
+	color: #99979c;
+	font-size: 14px;
+	
+}
+
+.footer .f_nav .f_p_top{
+	margin-bottom: 5px;
+}
+
+.footer .f_content{
+	margin-top: 5px;
+}
+
+.headpic{
+	position: relative;
+	box-sizing: border-box;
+	height: 53px;
+}
+
+.headpic a{
+	padding: 4px 8px 8px 8px;
+	white-space: nowrap;
+	display: block;
+}
+
+.headpic a img{
+	width: 40px;
+	margin-top: -10px;
+}
+
+
+.headpic  .center{
+	position: absolute;
+	box-shadow: 0 2px 8px rgba(0,0,0,1);
+	float: none;
+	margin-top: 0;
+	border-radius: 0;
+	border: 0;
+	right: 0;
+	left: auto;
+	top: 100%;
+	z-index: 1000;
+	min-width: 10rem;
+	padding: 0.5rem 0;
+	color: #212529;
+	font-size: 16px;
+	background-color: #fff;
+	text-align: left;
+	display: none;
+}
+
+.headpic:hover .center{
+	display: block;
+}
+
+.headpic .center a span{
+	color: #17a2b8;
+}
+
+#to_top{
+	display: block;
+	position: fixed;
+	bottom: 9em;
+	right: 2%;
+	height: 48px;
+	width: 36px;
+	top: auto;
+	cursor: pointer;
+	opacity: .8;
+	z-index: 9999;
+	background: url(../img/to_top.png) no-repeat 32% 82%;
+	text-align: center;
+}
+
